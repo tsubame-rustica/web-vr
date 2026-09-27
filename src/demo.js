@@ -38,7 +38,7 @@ rote.y = pi / -2;
 
 
 // 基準となるスピードと角度
-const defaultSpeed = 0.25;
+const defaultSpeed = 0.05;
 const defaultDeg = pi / 180 * defaultSpeed;
 
 // アニメーションのステップを管理する変数
