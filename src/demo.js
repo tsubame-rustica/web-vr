@@ -49,12 +49,12 @@ let upDownStep = 0;
 // スカイボックス（ワールドの背景）の設定
 const loaderSkyBox = new THREE.CubeTextureLoader();
 const texture = loaderSkyBox.load([
-    '/skybox/CosmicCoolCloudLeft.png',
-    '/skybox/CosmicCoolCloudRight.png',
-    '/skybox/CosmicCoolCloudTop.png',
-    '/skybox/CosmicCoolCloudBottom.png',
-    '/skybox/CosmicCoolCloudFront.png',
-    '/skybox/CosmicCoolCloudBack.png',
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudLeft.png`,
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudRight.png`,
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudTop.png`,
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudBottom.png`,
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudFront.png`,
+    `${import.meta.env.BASE_URL}skybox/CosmicCoolCloudBack.png`,
 ]);
 scene.background = texture;
 
