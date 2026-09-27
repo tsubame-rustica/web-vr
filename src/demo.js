@@ -184,7 +184,7 @@ function onWindowResize() {
 // glbファイルを読み込む関数
 function loadField(loaderGLTF) {
     loaderGLTF.load(
-        '/stage.glb',
+        `${import.meta.env.BASE_URL}stage.glb`,
         function ( gltf ) {
 
             // ワールドをthreejsに表示
