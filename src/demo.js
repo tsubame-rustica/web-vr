@@ -75,7 +75,7 @@ let roteY = 0;
 function animate() {
     requestAnimationFrame(animate);
 
-    const delta = clock.getDelta();
+    const delta = Math.min(clock.getDelta(), 0.1);
 
     const factor = delta * 60;
 
@@ -208,6 +208,7 @@ function loadField(loaderGLTF) {
         // called while loading is progressing
         function ( xhr ) {
             //　進捗バーをWebに表示
+            progressOuter.style.display = "flex";
             progress.style.width = ( xhr.loaded / xhr.total * 100 ) + '%';
             if (xhr.loaded / xhr.total * 100 >= 100) {
                 progressOuter.style.display = "none";
