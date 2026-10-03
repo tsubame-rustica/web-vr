@@ -36,9 +36,10 @@ pos.y = 0;
 pos.z = 0;
 rote.y = pi / -2;
 
+const clock = new THREE.Clock();
 
 // 基準となるスピードと角度
-const defaultSpeed = 0.05;
+const defaultSpeed = 0.5;
 const defaultDeg = pi / 180 * defaultSpeed;
 
 // アニメーションのステップを管理する変数
@@ -73,6 +74,13 @@ let roteY = 0;
 // アニメーションを実行する関数
 function animate() {
     requestAnimationFrame(animate);
+
+    const delta = clock.getDelta();
+
+    const factor = delta * 60;
+
+    const speed = defaultSpeed * factor;
+    const deg = defaultDeg * factor;
 
     // stepを管理する変数
     if (pos.x >= 100 && step == 0) {
@@ -110,37 +118,37 @@ function animate() {
     if (step == 0) {
         rote.y = roteY - pi / 2;
     } else if (step == 1) {        // 45degまで右旋回
-        roteY = roteY + defaultDeg;
+        roteY = roteY + deg;
         rote.y = roteY - pi / 2;
     } else if (step == 2) {
         rote.y = roteY - pi / 2;
     } else if (step == 3) {
-        roteY = roteY - defaultDeg;
+        roteY = roteY - deg;
         rote.y = roteY - pi / 2;
         if (pos.y < 10) {
-            rote.x += defaultDeg;
-            pos.y += defaultSpeed;
+            rote.x += deg;
+            pos.y += speed;
         }
     } else if (step == 4) {
-        rote.y += defaultDeg * 2.8;
+        rote.y += deg * 2.8;
         if (pos.y > 0) {
-            rote.x -= defaultDeg;
-            pos.y -= defaultSpeed;
+            rote.x -= deg;
+            pos.y -= speed;
         }
     } else if (step == 5) {
-        roteY = roteY + defaultDeg;
+        roteY = roteY + deg;
         rote.y = roteY + pi / 6;
     } else if (step == 6) {
-        roteY = roteY + defaultDeg;
-        rote.y -= defaultDeg * 3.5;
+        roteY = roteY + deg;
+        rote.y -= deg * 3.5;
         if (rote.y >= pi * 2 / 3) {
             rote.y = pi * 2 / 3;
         }
     } else if (step == 8) {
         if (upDownStep == 0) {
-            pos.y += defaultSpeed
+            pos.y += speed
         } else if (upDownStep == 1) {
-            pos.y -= defaultSpeed
+            pos.y -= speed
         }
         if (pos.y >= 15 && upDownStep == 0) {
             upDownStep = 1;
@@ -149,24 +157,24 @@ function animate() {
             pos.y = 0;
         }
     } else if (step == 9) {
-        roteY = roteY - defaultDeg;
+        roteY = roteY - deg;
         rote.y = roteY - pi / 2;
     } else if (step == 10) {
-        rote.y += defaultDeg * 5;
+        rote.y += deg * 5;
     } else if (step == 11) {
-        roteY = roteY + defaultDeg;
+        roteY = roteY + deg;
         rote.y = roteY + pi / 6;
     } else if (step == 12) {
-        roteY = roteY + defaultDeg;
-        rote.y -= defaultDeg * 3.5;
+        roteY = roteY + deg;
+        rote.y -= deg * 3.5;
         if (rote.y >= pi * 2 / 3) {
             rote.y = pi * 2 / 3;
         }
     }
     
     // どれだけ進むかを三角関数で計算
-    pos.x = pos.x + defaultSpeed * Math.cos(roteY);
-    pos.z = pos.z - defaultSpeed * Math.sin(roteY);
+    pos.x = pos.x + speed * Math.cos(roteY);
+    pos.z = pos.z - speed * Math.sin(roteY);
 
     effect.render(scene, camera);
 }
